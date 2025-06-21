@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Historial completo</title>
+</head>
+<body>
+    <h1>Historial de Clasificaciones</h1>
+    {% for img in historial %}
+        <div style="margin-bottom: 20px;">
+            <img src="{{ url_for('static', filename='uploads/' ~ img.filename) }}" width="150">
+            <p>Archivo: {{ img.filename }} - Predicción: {{ img.prediccion }}</p>
+        </div>
+    {% endfor %}
+    <a href="{{ url_for('index') }}">Volver al inicio</a>
+</body>
+</html>

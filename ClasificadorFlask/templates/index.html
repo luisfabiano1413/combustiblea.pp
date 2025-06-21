@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Clasificador de Imágenes IA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+        img {
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .historial {
+            margin-top: 30px;
+        }
+        .item {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sube una imagen</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="imagen" required>
+        <button type="submit">Clasificar</button>
+    </form>
+
+    {% if resultado %}
+        <h2>Resultado:</h2>
+        <p><strong>{{ resultado }}</strong></p>
+    {% endif %}
+
+    {% if imagenes %}
+        <div class="historial">
+            <h2>Historial reciente</h2>
+            {% for img in imagenes %}
+                <div class="item">
+                    <img src="{{ url_for('static', filename='uploads/' ~ img.filename) }}">
+                    <p>Predicción: {{ img.prediccion }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>
+
